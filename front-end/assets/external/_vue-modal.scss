@@ -17,5 +17,24 @@
             // left: 5% !important;
             width: auto !important;
         }
+        form {
+            button {
+                @extend .padding-s--y, .margin-m--top;
+                width: 100%;
+                border: none;
+                color: white;
+                cursor: pointer;
+                font-variant: small-caps;
+                text-transform: lowercase;
+                background-color: $color-main;
+                border-bottom: rgba($color-black, 0.4) $xxs solid;
+            }
+            .cancel {
+                @extend .padding-s--y, .margin-s--top, .gray-text;
+                font-size: 14px;
+                cursor: pointer;
+                text-align: center;
+            }
+        }
     }
 }

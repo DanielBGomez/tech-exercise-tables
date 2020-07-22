@@ -135,12 +135,7 @@ function createUser(conn, userData = {}){
                         (user_code, user_uuid, user_name, user_image, user_password, user_salt)
                     VALUES
                         (?, ?, ?, ?, ?, ?)`, [code, uuid, name, image, saltedPassword.password, saltedPassword.salt])
-                        .then(resp => {
-                            resolve(resp[0])
-
-                            // Release
-                            db.releaseConnection(conn)
-                        })
+                        .then(resp => resolve(resp[0]))
                         .catch(err => {
                             switch(err.code){
                                 case 'ER_DUP_ENTRY':

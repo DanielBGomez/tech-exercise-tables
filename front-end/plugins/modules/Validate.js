@@ -61,7 +61,7 @@ class Validate {
     }
     static image(image, options = {}){
         options.label = options.label || 'Image'
-        return Validate._validate(image, options)
+        return Validate.file(image, options)
     }
     static phone(phone = '', options = {}){
         options.label = options.label || 'Phone'

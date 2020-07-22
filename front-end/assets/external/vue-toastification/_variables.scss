@@ -10,7 +10,7 @@ $vt-color-default: $color-gray-50 !default;
 $vt-text-color-default: $color-white !default;
 $vt-color-info: #2196f3 !default;
 $vt-text-color-info: #fff !default;
-$vt-color-success: scale-color($color-green, $lightness: 20%) !default;
+$vt-color-success: scale-color($color-green, $lightness: 10%) !default;
 $vt-text-color-success: $color-white !default;
 $vt-color-warning: #ffc107 !default;
 $vt-text-color-warning: $color-white !default;

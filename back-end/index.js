@@ -39,8 +39,10 @@ app.use(db_middleware)
 
 // Setup routers
 const UsersEndpoint = require('./src/endpoints/user')
+const ZonesEndpoint = require('./src/endpoints/zone')
 
 app.use(UsersEndpoint)
+app.use(ZonesEndpoint)
 
 // Start server
 const server = http.createServer(app)

@@ -6,10 +6,23 @@
 </template>
 
 <script>
+    const jwt = require('jsonwebtoken')
+
     import Navegation from '~/components/Navegation'
 
     export default {
         name: "default",
+        mounted(){
+            // Has session token?
+            const sessionToken = this.$storage.local.get("s_tkn")
+            if(!sessionToken) return this.$navTo('/login')
+
+            // Verify token
+            jwt.verify(sessionToken, 'some_key', (err, data) => {
+                // Redirect to index if valid token
+                if(err) this.$navTo('/login') 
+            })
+        },
         components: {
             Navegation
         }
