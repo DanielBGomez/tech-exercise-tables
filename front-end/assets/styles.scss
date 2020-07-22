@@ -1,0 +1,34 @@
+// External elements
+@import 'external/main';
+
+/**
+ * Environment
+*/
+* {
+    box-sizing: border-box;
+}
+
+html {
+    @extend .black-text, .white, .darken-1;
+    width: 100%;
+    height: 100%;
+    background-color: $color-gray-05;
+}
+
+body,
+#__nuxt,
+#__layout,
+#app {
+    width: inherit;
+    height: inherit;
+}
+body {
+    overflow-y: auto;
+}
+#app {
+    display: flex;
+    flex-direction: column;
+}
+form {
+    display: inline-block;
+}

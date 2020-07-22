@@ -1,0 +1,94 @@
+// Sizes
+$no-space: 0px;
+$xxxs: 2px;
+$xxs: 4px;
+$xs: 8px;
+$s: 12px;
+$m: 16px;
+$l: 24px;
+$xl: 32px;
+$xxl: 40px;
+$xxxl: 60px;
+$xxxxl: 100px;
+$auto: auto;
+
+// Paddings
+@mixin padding($top: $M, $right: $top, $bottom: $top, $left: $right){
+    padding: $top $right $bottom $right;
+}
+
+@mixin sizing-all-directions-single($size: 'm'){
+    $sizeValue: $m;
+
+    @if ($size == 'no-space') { $sizeValue: $no-space }
+    @else if ($size == 'xxxs') { $sizeValue: $xxs }
+    @else if ($size == 'xxs') { $sizeValue: $xxs }
+    @else if ($size == 'xs') { $sizeValue: $xs }
+    @else if ($size == 's') { $sizeValue: $s }
+    @else if ($size == 'l') { $sizeValue: $l }
+    @else if ($size == 'xl') { $sizeValue: $xl }
+    @else if ($size == 'xxl') { $sizeValue: $xxl }
+    @else if ($size == 'xxxl') { $sizeValue: $xxxl }
+    @else if ($size == 'xxxxl') { $sizeValue: $xxxxl }
+    @else if ($size == 'auto') { $sizeValue: $auto }
+
+    // Padding
+    .padding-#{$size} { padding: $sizeValue }
+
+    .padding-#{$size}--top { padding-top: $sizeValue }
+    .padding-#{$size}--right { padding-right: $sizeValue }
+    .padding-#{$size}--bottom { padding-bottom: $sizeValue }
+    .padding-#{$size}--left { padding-left: $sizeValue }
+    
+    .padding-#{$size}--x {padding-left: $sizeValue; padding-right: $sizeValue; }
+    .padding-#{$size}--y {padding-top: $sizeValue; padding-bottom: $sizeValue; }
+
+    // Margin
+    .margin-#{$size} { margin: $sizeValue }
+
+    .margin-#{$size}--top { margin-top: $sizeValue }
+    .margin-#{$size}--right { margin-right: $sizeValue }
+    .margin-#{$size}--bottom { margin-bottom: $sizeValue }
+    .margin-#{$size}--left { margin-left: $sizeValue }
+    
+    .margin-#{$size}--x {margin-left: $sizeValue; margin-right: $sizeValue; }
+    .margin-#{$size}--y {margin-top: $sizeValue; margin-bottom: $sizeValue; }
+
+    /**
+     * Importants
+    */
+    // Padding
+    .padding-#{$size}--important { padding: $sizeValue !important }
+
+    .padding-#{$size}--top--important { padding-top: $sizeValue !important }
+    .padding-#{$size}--right--important { padding-right: $sizeValue !important }
+    .padding-#{$size}--bottom--important { padding-bottom: $sizeValue !important }
+    .padding-#{$size}--left--important { padding-left: $sizeValue !important }
+    
+    .padding-#{$size}--x--important {padding-left: $sizeValue !important; padding-right: $sizeValue !important; }
+    .padding-#{$size}--y--important {padding-top: $sizeValue !important; padding-bottom: $sizeValue !important; }
+
+    // Margin
+    .margin-#{$size}--important { margin: $sizeValue !important }
+
+    .margin-#{$size}--top--important { margin-top: $sizeValue !important }
+    .margin-#{$size}--right--important { margin-right: $sizeValue !important }
+    .margin-#{$size}--bottom--important { margin-bottom: $sizeValue !important }
+    .margin-#{$size}--left--important { margin-left: $sizeValue !important }
+    
+    .margin-#{$size}--x--important {margin-left: $sizeValue !important; margin-right: $sizeValue !important; }
+    .margin-#{$size}--y--important {margin-top: $sizeValue !important; margin-bottom: $sizeValue !important; }
+}
+
+@include sizing-all-directions-single("no-space");
+@include sizing-all-directions-single("xxxs");
+@include sizing-all-directions-single("xxs");
+@include sizing-all-directions-single("xs");
+@include sizing-all-directions-single("s");
+@include sizing-all-directions-single("m");
+@include sizing-all-directions-single("l");
+@include sizing-all-directions-single("xl");
+@include sizing-all-directions-single("xxl");
+@include sizing-all-directions-single("xxxl");
+@include sizing-all-directions-single("xxxxl");
+@include sizing-all-directions-single("auto");

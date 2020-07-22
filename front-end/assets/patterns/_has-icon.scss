@@ -1,0 +1,13 @@
+@import '../external/material-design-icons/material-design-icons';
+
+.has-icon {
+    &:before {
+        @extend .material-icons;
+        content: attr(data-icon);
+        font-size: inherit !important;
+    }
+
+    &.icon-small:before {
+        font-size: 20px !important;
+    }
+}

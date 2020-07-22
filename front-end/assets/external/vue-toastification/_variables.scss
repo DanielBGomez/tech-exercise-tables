@@ -1,0 +1,25 @@
+$vt-namespace: 'Vue-Toastification' !default;
+$vt-toast-min-width: 326px !default;
+$vt-toast-max-width: 600px !default;
+$vt-toast-background: #ffffff !default;
+
+$vt-toast-min-height: $xl !default;
+$vt-toast-max-height: 800px !default;
+
+$vt-color-default: $color-gray-50 !default;
+$vt-text-color-default: $color-white !default;
+$vt-color-info: #2196f3 !default;
+$vt-text-color-info: #fff !default;
+$vt-color-success: scale-color($color-green, $lightness: 20%) !default;
+$vt-text-color-success: $color-white !default;
+$vt-color-warning: #ffc107 !default;
+$vt-text-color-warning: $color-white !default;
+$vt-color-error: $color-red !default;
+$vt-text-color-error: $color-white !default;
+
+$vt-color-progress-default: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55) !default;
+
+$vt-mobile: "only screen and (max-width : 600px)" !default;
+$vt-not-mobile: "only screen and (min-width : 600px)" !default;
+$vt-font-family: "Roboto", Arial, sans-serif !default;
+$vt-z-index: 9999 !default;

@@ -1,0 +1,114 @@
+/**
+ * Backgrounds and text classes mixin
+*/
+@mixin setup-color($color, $colorName){
+    .#{$colorName} { background-color: $color }
+    .#{$colorName}-text { color: $color }
+
+    .#{$colorName}--important { background-color: $color !important }
+    .#{$colorName}-text--important { color: $color !important }
+
+    @for $i from 1 through 6 {
+        .#{$colorName}.darken-#{$i} { background-color: darken($color, 10 * $i) }
+        .#{$colorName}.lighten-#{$i} { background-color: lighten($color, 10 * $i) }
+        
+        .#{$colorName}.darken-#{$i}--important { background-color: darken($color, 10 * $i) !important }
+        .#{$colorName}.lighten-#{$i}--important { background-color: lighten($color, 10 * $i) !important }
+    }
+}
+
+// Grays
+$color-gray-100: #262626;
+$color-gray-85: #22242C;
+$color-gray-80: #2B303B;
+$color-gray-75: #363C49;
+$color-gray-68: #404653;
+$color-gray-50: #626C80;
+$color-gray-40: #80889C;
+$color-gray-30: #A6ADBF;
+$color-gray-20: #C4C9D4;
+$color-gray-10: #E3E4EA;
+$color-gray-05: #F1F2F4;
+$color-gray-03: #FAFBFC;
+$color-gray-00: #FFFFFF;
+
+$color-black: black;
+$color-white: $color-gray-00;
+
+.black { background-color: $color-black; }
+.black-text { color: $color-black; }
+
+.black--important { background-color: $color-black !important; }
+.black-text--important { color: $color-black !important; }
+
+
+.white { background-color: $color-white; }
+.white-text { color: $color-white; }
+
+.white--important { background-color: $color-white !important; }
+.white-text--important { color: $color-white !important; }
+
+.black.lighten-1, .gray-100, .gray.darken-5 { background-color: $color-gray-100 }
+.black.lighten-2, .gray-85, .gray.darken-4 { background-color: $color-gray-85 }
+.black.lighten-3, .gray-80, .gray.darken-3 { background-color: $color-gray-80 }
+.black.lighten-4, .gray-75, .gray.darken-2 { background-color: $color-gray-75 }
+.black.lighten-5, .gray-68, .gray.darken-1 { background-color: $color-gray-68 }
+.black.lighten-6, .gray, .gray-50 { background-color: $color-gray-50 }
+.white.darken-6, .gray-40, .gray.lighten-1 { background-color: $color-gray-40 }
+.white.darken-5, .gray-30, .gray.lighten-2 { background-color: $color-gray-30 }
+.white.darken-4, .gray-20, .gray.lighten-3 { background-color: $color-gray-20 }
+.white.darken-3, .gray-10, .gray.lighten-4 { background-color: $color-gray-10 }
+.white.darken-2, .gray-05, .gray.lighten-5 { background-color: $color-gray-05 }
+.white.darken-1, .gray-03, .gray.lighten-6 { background-color: $color-gray-03 }
+.black-text.text-lighten-1, .gray-100-text, .gray-text.text-darken-5 { color: $color-gray-100 }
+.black-text.text-lighten-2, .gray-85-text, .gray-text.text-darken-4 { color: $color-gray-85 }
+.black-text.text-lighten-3, .gray-80-text, .gray-text.text-darken-3 { color: $color-gray-80 }
+.black-text.text-lighten-4, .gray-75-text, .gray-text.text-darken-2 { color: $color-gray-75 }
+.black-text.text-lighten-5, .gray-68-text, .gray-text.text-darken-1 { color: $color-gray-68 }
+.black-text.text-lighten-6, .gray-text, .gray-50-text { color: $color-gray-50 }
+.white-text-darken-6, .gray-40-text, .gray-text.text-lighten-1 { color: $color-gray-40 }
+.white-text.text-darken-5, .gray-30-text, .gray-text.text-lighten-2 { color: $color-gray-30 }
+.white-text.text-darken-4, .gray-20-text, .gray-text.text-lighten-3 { color: $color-gray-20 }
+.white-text.text-darken-3, .gray-10-text, .gray-text.text-lighten-4 { color: $color-gray-10 }
+.white-text.text-darken-2, .gray-05-text, .gray-text.text-lighten-5 { color: $color-gray-05 }
+.white-text.text-darken-1, .gray-03-text, .gray-text.text-lighten-6 { color: $color-gray-03 }
+
+.transparent { background-color: transparent }
+.transparent-text { color: transparent }
+
+/**
+ * Green -- Main color
+*/
+$color-green: #2A9D8F;
+$color-dark-green: #264653;
+
+// Aliases
+$color-main: $color-dark-green;
+@include setup-color($color-green, 'green');
+@include setup-color($color-dark-green, 'main');
+@include setup-color($color-dark-green, 'dark-green');
+
+/**
+ * Orange -- Secondary color
+*/
+$color-orange: #F4A261;
+
+// Aliases
+$color-secondary: $color-orange;
+@include setup-color($color-orange, 'orange');
+@include setup-color($color-orange, 'secondary');
+
+$color-dark-orange: #E76F51;
+@include setup-color($color-dark-orange, 'dark-orange');
+
+/**
+ * Red -- Secondary color
+*/
+$color-red: #F03A47;
+@include setup-color($color-red, 'red');
+
+/**
+ *  Alternative colors
+*/
+$color-yellow: #E9C46A;
+@include setup-color($color-yellow, 'yellow');
