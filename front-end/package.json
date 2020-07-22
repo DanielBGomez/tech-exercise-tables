@@ -21,6 +21,7 @@
     "js-sha512": "^0.8.0",
     "jsonwebtoken": "^8.5.1",
     "query-string": "^6.13.1",
+    "vue-js-modal": "^2.0.0-rc.6",
     "vue-toastification": "^1.7.6"
   }
 }

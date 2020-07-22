@@ -10,10 +10,18 @@ Object.defineProperty(Vue.prototype, "$storage", { value: { local: Storage.Local
         
 // Vue modules
 import Toast from 'vue-toastification'
+import Modal from 'vue-js-modal'
 
 Vue.use(Toast, {
     position: 'bottom-right',
     tastClassName: [ "toast-element" ]
+})
+Vue.use(Modal, {
+    dynamic: true,
+    dynamicDefaults: {
+        height: 'auto'
+    },
+    injectModalsContainer: true
 })
 
 // Aditional Functions
