@@ -1,11 +1,9 @@
 <template>
     <div class="container">
-        <h2>Listado de zonas</h2>
+        <h2>Listado de mesas</h2>
         <div class="elements">
-            <div class="zone-card white" v-for="zone in zones" :key="zone.uuid" >
-                <div class="image" :style="{ backgroundImage: `url('${zone.image}')` }">
-                </div>
-                <div class="name padding-m--x padding-s--y gray-text">{{ zone.name }}</div>
+            <div class="table-card white" v-for="table in tables" :key="table.uuid" :status="table.status" >
+                <div class="name padding-m--x padding-l--y gray-text">{{ table.name }}</div>
             </div>
         </div>
         <FloatingAction @click="floatingAction" />
@@ -16,16 +14,16 @@
     const jwt = require('jsonwebtoken')
 
     import FloatingAction from '~/components/FloatingAction'
-    import CreateZoneModal from '~/components/modals/CreateZone'
+    import CreateTableModal from '~/components/modals/CreateTable'
 
     export default {
-        name: "ZonesPage",
+        name: "TablesPage",
         asyncData(context){
             return new Promise((resolve, reject) => {
                 context.app.$api.get({
-                        endpoint: "zones"
+                        endpoint: "tables"
                     })
-                    .then(zones => resolve({ zones }))
+                    .then(tables => resolve({ tables }))
                     .catch(err => {
                         console.log(err)
                         context.error({ statusCode: 400, message: 'No he podido conectar con el servidor' })
@@ -34,7 +32,7 @@
         },
         methods: {
             floatingAction(){
-                this.$modal.show(CreateZoneModal, {}, { classes: ['fit-content'] })
+                this.$modal.show(CreateTableModal, {}, { classes: ['fit-content'] })
             }
         },
         components: {
@@ -50,13 +48,17 @@
             display: flex;
             flex-wrap: wrap;
 
-            .zone-card {
+            .table-card {
                 margin-right: $m;
                 width: calc(25% - 12px);
                 box-shadow: 0 3px 5px rgba(black, 0.2);
 
                 &:nth-of-type(4n) {
                     margin-right: 0;
+                }
+
+                &[status='1'] {
+                    @extend .red, .lighten-8;
                 }
 
                 .image {
@@ -79,10 +81,10 @@
                     
                     &:before {
                         @extend .material-icons;
-                        content: 'label';
+                        content: 'deck';
                         opacity: 0.8;
                         font-size: 20px;
-                        margin-right: $xs;
+                        margin-right: $s;
                         vertical-align: bottom;
                     }
                 }

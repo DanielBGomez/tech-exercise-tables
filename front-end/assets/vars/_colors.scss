@@ -8,12 +8,12 @@
     .#{$colorName}--important { background-color: $color !important }
     .#{$colorName}-text--important { color: $color !important }
 
-    @for $i from 1 through 6 {
-        .#{$colorName}.darken-#{$i} { background-color: darken($color, 10 * $i) }
-        .#{$colorName}.lighten-#{$i} { background-color: lighten($color, 10 * $i) }
+    @for $i from 1 through 9 {
+        .#{$colorName}.darken-#{$i} { background-color: scale-color($color, $lightness: percentage(-10 * $i / 100)) }
+        .#{$colorName}.lighten-#{$i} { background-color: scale-color($color, $lightness: percentage(10 * $i / 100)) }
         
-        .#{$colorName}.darken-#{$i}--important { background-color: darken($color, 10 * $i) !important }
-        .#{$colorName}.lighten-#{$i}--important { background-color: lighten($color, 10 * $i) !important }
+        .#{$colorName}.darken-#{$i}--important { background-color: scale-color($color, $lightness: percentage(-10 * $i / 100)) !important }
+        .#{$colorName}.lighten-#{$i}--important { background-color: scale-color($color, $lightness: percentage(10 * $i / 100)) !important }
     }
 }
 
