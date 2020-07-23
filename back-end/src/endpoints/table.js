@@ -218,7 +218,7 @@ function archiveTable(conn, uuid){
         }
 
         // Execute query
-        conn.execute("DELETE FROM tables WHERE table_uuid = ?", [ uuid ])
+        conn.execute("DELETE FROM tables WHERE table_uuid = ? AND table_status != ?", [ uuid, 1 ])
             .then(resp => resolve(resp[0]))
             .catch(err => reject({ code: 500, errKey: "DELETE_QUERY_ERROR", msg: err.sqlMessage, data: err  }))
     })

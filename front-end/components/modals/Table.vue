@@ -5,7 +5,7 @@
         <InputElement type="select" label="Zona" :elements="zones" customLabel="name" customValue="id" :validator="validators.zone" v-model="zone" required :disabled="loading" />
         <InputElement type="select" label="Estado de la mesa" :elements="availableStatus" v-model="status" :disabled="loading" />
         <button :disabled="loading">{{ data ? "Actualizar" : "Registrar" }} mesa</button>
-        <button class="red--important lighten-2 margin-xxl--top--important" v-if="data" :disabled="loading" @click.prevent="archive(data.uuid)">Borrar mesa</button>
+        <button class="red--important lighten-2 margin-xxl--top--important" v-if="data" :disabled="loading || data.status == 1" @click.prevent="data.status != 1 ? archive(data.uuid) : ''">Borrar mesa</button>
         <div class="cancel" @click="$emit('close')">Cancelar y salir</div>
     </form>
 </template>
