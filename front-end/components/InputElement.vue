@@ -15,7 +15,10 @@
                 </optgroup>
             </template>
             <template v-else>
-                <option v-for="(option, index) in parsedElements" :key="option.slug || index" :selected="(option[customValue] || option.value || option.slug || option) == value" :value="option[customValue] || option.value || option.slug || option">{{ option[customLabel] || option.label || option }}</option>
+                <option v-for="(option, index) in parsedElements" :key="option.slug || index" 
+                    :selected="(typeof option[customValue] != 'undefined' ? option[customValue] : typeof option.value != 'undefined' ? option.value : typeof option.slug != 'undefined' ? option.slug : option) == value"
+                    :value="typeof option[customValue] != 'undefined' ? option[customValue] : typeof option.value != 'undefined' ? option.value : typeof option.slug != 'undefined' ? option.slug : option">
+                        {{ option[customLabel] || option.label || option }}</option>
             </template>
         </select>
 
@@ -45,12 +48,7 @@
             },
             disabled: Boolean,
             required: Boolean,
-            validator: {
-                type: [RegExp, Function, String, Object],
-                default(){
-                    return 'string'
-                }
-            },
+            validator: [RegExp, Function, String, Object],
             label: {
                 type: String,
                 default(){
@@ -158,7 +156,7 @@
                     case 'function':
                         return this.validator(this.value)
                     default:
-                        return false
+                        return true
                 }
             }
         },

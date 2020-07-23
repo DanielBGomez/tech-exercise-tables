@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <h2>Listado de mesas</h2>
+        <InputElement class="filter margin-xxl--bottom" type="select" label="Filtrar mesas" validator="number" :elements="filters" v-model="filterStatus" />
         <div class="elements margin-xxl--bottom" v-for="zone in zones" :key="zone.id" :data-label="zone.name">
             <div class="table-card white" v-for="table in zone.tables" :key="table.uuid" :status="table.status" @click="openTableModal(table)" >
                 <div class="name padding-m--x padding-l--y gray-text">{{ table.name }}</div>
@@ -13,6 +14,7 @@
 <script>
     const jwt = require('jsonwebtoken')
 
+    import InputElement from '~/components/InputElement'
     import FloatingAction from '~/components/FloatingAction'
     import TableModal from '~/components/modals/Table'
 
@@ -30,7 +32,29 @@
                     })
             })
         },
+        data() {
+            return {
+                filters: [
+                    {
+                        slug: -1,
+                        label: "Todas"
+                    },
+                    {
+                        slug: 0,
+                        label: "Libres"
+                    },
+                    {
+                        slug: 1,
+                        label: "Activas"
+                    }
+                ],
+                filterStatus: -1
+            }
+        },
         computed: {
+            filteredTables(){
+                return this.filterStatus == -1 ? this.tables : this.tables.filter(table => table.status == this.filterStatus)
+            },
             zones(){
                 const zones = {
                     '-1': {
@@ -40,7 +64,7 @@
                     }
                 }
 
-                Array.from(this.tables).forEach(table => {
+                Array.from(this.filteredTables).forEach(table => {
                     // Table is assigned?
                     if(table.zone) {
                         // Create zone if doesn't exist already
@@ -62,6 +86,7 @@
             }
         },
         components: {
+            InputElement,
             FloatingAction
         }
     }
@@ -69,6 +94,7 @@
 
 <style lang="scss" scoped>
     .container {
+
         .elements {
             width: 100%;
             display: flex;
