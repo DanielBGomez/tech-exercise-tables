@@ -111,7 +111,8 @@ router.delete('/table/:uuid', (req, res) => {
 function createTable(conn, tableData = {}){
     return new Promise((resolve, reject) => {
         // Destruct params
-        const { uuid = uuidv4(), name, zone, status } = tableData
+        let zone = tableData.zone
+        const { uuid = uuidv4(), name, status } = tableData
 
         // Validate params
         const errors = {}
@@ -123,7 +124,9 @@ function createTable(conn, tableData = {}){
         } catch(err) { errors.name = err }
         try {
             Validate.number(zone, { label: "Zone", length: { min: 1 } })
-        } catch(err) { errors.zone = err }
+        } catch {
+            zone = null
+        } // Ignore zone errors
         try {
             Validate.number(status, { label: "Status", enum: [ 0, 1 ] })
         } catch(err) { errors.status = err }
