@@ -39,3 +39,6 @@ framework de CSS. Es un plus hacerlo from scratch.
 así como las instrucciones para ejecutar el programa en el
 .README.
 > Es un plus si se genera el gitflow adecuado.
+
+# Notas adicionales
+> El usuario predefinido en la base de datos tiene como código: `3269` y como pin `1234`.
