@@ -6,15 +6,13 @@ const cors = require('cors')
 const helmet = require('helmet')
 const mysql = require('mysql2/promise')
 
-// Local Modules
-const Validate = require('./src/Validate')
-
 // Configs
 const PORT = process.env.PORT || 3100
 const DB_CONFIG = {
-    host: 'localhost',
-    user: 'root',
-    database: 'tech_test',
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE || 'tech_test',
     waitForConnections: true
 }
 
