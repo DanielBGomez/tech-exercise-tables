@@ -2,13 +2,16 @@
     <div class="container">
         <h2>Listado de zonas</h2>
         <div class="elements">
-            <div class="zone-card white" v-for="zone in zones" :key="zone.uuid" >
-                <div class="image" :style="{ backgroundImage: `url('${zone.image}')` }">
-                </div>
+            <div class="zone-card white" v-for="zone in zones" :key="zone.uuid" @click="openZoneModal(zone)" >
+                <div class="image" :style="{ backgroundImage: `url('${zone.image}')` }" />
                 <div class="name padding-m--x padding-s--y gray-text">{{ zone.name }}</div>
+                <div class="tables padding-m--x padding-s--top padding-m--bottom gray-text">
+                    <div class="tables-label main-text text-lighten-3 margin-xs--bottom" ><b>{{ (zone.tables || []).filter(table => table.status == 0).length }}</b> libre(s)</div>
+                    <div class="tables-label orange-text text-lighten-2" ><b>{{ (zone.tables || []).filter(table => table.status == 1).length }}</b> activa(s)</div>
+                </div>
             </div>
         </div>
-        <FloatingAction @click="floatingAction" />
+        <FloatingAction @click="openZoneModal()" />
     </div>
 </template>
 
@@ -16,14 +19,17 @@
     const jwt = require('jsonwebtoken')
 
     import FloatingAction from '~/components/FloatingAction'
-    import CreateZoneModal from '~/components/modals/CreateZone'
+    import ZoneModal from '~/components/modals/Zone'
 
     export default {
         name: "ZonesPage",
         asyncData(context){
             return new Promise((resolve, reject) => {
                 context.app.$api.get({
-                        endpoint: "zones"
+                        endpoint: "zones",
+                        params: {
+                            tables: true
+                        }
                     })
                     .then(zones => resolve({ zones }))
                     .catch(err => {
@@ -33,8 +39,8 @@
             })
         },
         methods: {
-            floatingAction(){
-                this.$modal.show(CreateZoneModal, {}, { classes: ['fit-content'] })
+            openZoneModal(data = false){
+                this.$modal.show(ZoneModal, { data }, { classes: ['fit-content'] })
             }
         },
         components: {
@@ -51,6 +57,7 @@
             flex-wrap: wrap;
 
             .zone-card {
+                cursor: pointer;
                 margin-right: $m;
                 width: calc(25% - 12px);
                 box-shadow: 0 3px 5px rgba(black, 0.2);
@@ -76,7 +83,6 @@
                     }
                 }
                 .name {
-                    
                     &:before {
                         @extend .material-icons;
                         content: 'label';
@@ -84,6 +90,18 @@
                         font-size: 20px;
                         margin-right: $xs;
                         vertical-align: bottom;
+                    }
+                }
+                .tables {
+                    .tables-label {
+                        &:before {
+                            @extend .material-icons;
+                            content: 'deck';
+                            opacity: 0.8;
+                            font-size: 20px;
+                            margin-right: $xs;
+                            vertical-align: bottom;
+                        }
                     }
                 }
             }

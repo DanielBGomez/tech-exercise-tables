@@ -15,7 +15,7 @@
                 </optgroup>
             </template>
             <template v-else>
-                <option v-for="(option, index) in parsedElements" :key="option.slug || index" :value="option[customValue] || option.value || option.slug || option">{{ option[customLabel] || option.label || option }}</option>
+                <option v-for="(option, index) in parsedElements" :key="option.slug || index" :selected="(option[customValue] || option.value || option.slug || option) == value" :value="option[customValue] || option.value || option.slug || option">{{ option[customLabel] || option.label || option }}</option>
             </template>
         </select>
 

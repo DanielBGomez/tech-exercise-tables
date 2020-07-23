@@ -11,9 +11,15 @@
     @for $i from 1 through 9 {
         .#{$colorName}.darken-#{$i} { background-color: scale-color($color, $lightness: percentage(-10 * $i / 100)) }
         .#{$colorName}.lighten-#{$i} { background-color: scale-color($color, $lightness: percentage(10 * $i / 100)) }
+
+        .#{$colorName}-text.text-darken-#{$i} { color: scale-color($color, $lightness: percentage(-10 * $i / 100)) }
+        .#{$colorName}-text.text-lighten-#{$i} { color: scale-color($color, $lightness: percentage(10 * $i / 100)) }
         
         .#{$colorName}.darken-#{$i}--important { background-color: scale-color($color, $lightness: percentage(-10 * $i / 100)) !important }
         .#{$colorName}.lighten-#{$i}--important { background-color: scale-color($color, $lightness: percentage(10 * $i / 100)) !important }
+        
+        .#{$colorName}-text--important.text-darken-#{$i} { color: scale-color($color, $lightness: percentage(-10 * $i / 100)) !important }
+        .#{$colorName}-text--important.text-lighten-#{$i} { color: scale-color($color, $lightness: percentage(10 * $i / 100)) !important }
     }
 }
 
